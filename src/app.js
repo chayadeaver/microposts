@@ -4,7 +4,7 @@ import { ui } from './ui'
 // Get posts on DOM load
 document.addEventListener('DOMContentLoaded', getPosts);
 
-// Listen for add post
+// Listen for submit post
 document.querySelector('.post-submit').addEventListener('click', submitPost);
 
 // Get Posts
@@ -24,4 +24,11 @@ function submitPost(){
     title,
     body
   }
+
+  // Create Post
+  http.post('http://localhost:3000/posts', data)
+    .then(data => {
+      getPosts();
+    })
+    .catch(err => console.log(err));
 }
